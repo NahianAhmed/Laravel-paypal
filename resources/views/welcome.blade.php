@@ -8,7 +8,8 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
-
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
         <!-- Styles -->
         <style>
             html, body {
@@ -58,53 +59,17 @@
     <body>
         <div class="flex-center position-ref full-height">
 
+        <form action="{{url('/create-payment')}}" method="POST" >
+       @csrf
+       <button class="btn btn-primary" type="submit" target="_blank"><i class="fa fa-paypal"></i>Pay With Paypal</button>
 
-            <div class="content">
+    </form>
 
 
-                <div class="links">
-                    <div id="paypal-button"></div>
-                </div>
-            </div>
+
         </div>
 
-    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
-    <script>
-      paypal.Button.render({
-        env: 'sandbox', // Or 'production'
-        client:{
-            sandbox:'AS5sbpA5u-OqBhXhfMZ4MB8tXflkDiGPuv5A65JzXhZnV-ch04aDjHx_ubakEX_Wgk8QW8Ih5B-FtYn6',
-        },
-        style: {
-          size: 'large',
-          color: 'gold',
-          shape: 'pill',
-        },
-        // Set up the payment:
-        // 1. Add a payment callback
-        payment: function(data, actions) {
-          // 2. Make a request to your server
-          return actions.payment.create({
-              transactions:[{
-                  amount:{
-                      total:'50.00',
-                      currency:'USD',
-                  }
-              }]
 
 
-            });
-        },
-
-        onAuthorize: function(data, actions) {
-
-          return actions.payment.execute().then(function() {
-
-              alert('PAYMENT WENT THROUGH!!');
-
-            });
-        }
-      }, '#paypal-button');
-    </script>
     </body>
 </html>

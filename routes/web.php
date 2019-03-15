@@ -14,3 +14,5 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::post('/create-payment','PaymentController@create');
+Route::get('/execute-payment','PaymentController@execute');
