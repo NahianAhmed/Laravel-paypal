@@ -83,11 +83,17 @@
         // Set up the payment:
         // 1. Add a payment callback
         payment: function(data, actions) {
-          // 2. Make a request to your server
+
+
+
           return actions.payment.create({
+            redirect_urls:{
+
+            return_url:'http://localhost/paypal/execute-payment'
+            },
               transactions:[{
                   amount:{
-                      total:'50.00',
+                      total:'21.00',
                       currency:'USD',
                   }
               }]
@@ -97,12 +103,8 @@
         },
 
         onAuthorize: function(data, actions) {
+             return actions.redirect();
 
-          return actions.payment.execute().then(function() {
-
-              alert('PAYMENT WENT THROUGH!!');
-
-            });
         }
       }, '#paypal-button');
     </script>
